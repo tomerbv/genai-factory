@@ -212,6 +212,7 @@ class WorkflowServer:
 
         # build image with workflow source code from git and config requirements
         requirements = getattr(self._config, "image_requirements", [])
+        print(f"Image Requirements: {requirements}")
         workflow_source_url = getattr(self._config, "workflow_source_url", project.source)
         if not workflow_source_url:
             raise ValueError(
