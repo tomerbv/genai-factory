@@ -20,3 +20,13 @@ workflow_api_name: workflow-api
 workflow_source_url: git://github.com/tomerbv/workflow_example.git#main
 verbose: true
 workflows_kwargs: {}
+image_requirements:
+  - langchain==0.3.27
+  - langchain-community==0.3.31
+  - langchain-openai==0.2.14
+  - langchain-huggingface==0.1.2
+  - fastapi==0.110.3
+  - uvicorn==0.30.6
+  - mlrun==1.9.1
+  - chromadb==0.5.3
+  - sentence_transformers
