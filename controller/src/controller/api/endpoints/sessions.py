@@ -16,7 +16,7 @@ from fastapi import APIRouter, Depends
 
 from controller.api.utils import get_db
 from controller.db import client
-from genai_factory.schemas import APIResponse, ChatSession, OutputMode
+from genai_factory.schemas import APIResponse, Session, OutputMode
 
 router = APIRouter(prefix="/users/{user_name}")
 
@@ -24,7 +24,7 @@ router = APIRouter(prefix="/users/{user_name}")
 @router.post("/sessions")
 def create_session(
     user_name: str,
-    session: ChatSession,
+    session: Session,
     db_session=Depends(get_db),
 ) -> APIResponse:
     """
@@ -87,7 +87,7 @@ def get_session(
 def update_session(
     user_name: str,
     name: str,
-    session: ChatSession,
+    session: Session,
     db_session=Depends(get_db),
 ) -> APIResponse:
     """

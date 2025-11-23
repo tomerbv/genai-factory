@@ -13,21 +13,16 @@
 # limitations under the License.
 
 from enum import Enum
-from typing import Optional
 
 from genai_factory.schemas.base import BaseWithVerMetadata
 
+class Schedule(BaseWithVerMetadata):
+    _top_level_fields = ["configuration", "status", "runs"]
 
-class Model(BaseWithVerMetadata):
-    _extra_fields = ["source", "producer", "profile"]
-    _top_level_fields = ["is_model", "base_model", "task"]
+    workflow_id: str
 
-    project_id: str
+    configuration: dict[str, str] = {}
+    status: dict[str, str] = {}
+    runs: list[str] = []
 
-    is_model: bool
-    base_model: str
-    task: Optional[str] = None
-    source: Optional[str] = None
-    producer: dict[str, str] = {}
-    profile: dict[str, str] = {}
 

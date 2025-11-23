@@ -16,4 +16,7 @@ from genai_factory.schemas.base import BaseWithVerMetadata
 
 
 class Project(BaseWithVerMetadata):
-    pass
+    _top_level_fields = ["source", "steps"]
+
+    source: str = ""
+    steps: dict[str, str] = {}

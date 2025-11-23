@@ -21,21 +21,26 @@ from genai_factory.schemas.base import BaseWithVerMetadata
 
 class WorkflowType(str, Enum):
     INGESTION = "ingestion"
-    APPLICATION = "application"
-    DATA_PROCESSING = "data-processing"
+    DATASET_PREPARATION = "dataset-preparation"
     TRAINING = "training"
     EVALUATION = "evaluation"
+    APPLICATION = "application"
+    KNOWLEDGE_BASE = "knowledge-base"
+    AGENT = "agent"
+    MCP_SERVER = "mcp-server"
 
 
 class Workflow(BaseWithVerMetadata):
     _top_level_fields = ["workflow_type"]
 
-    workflow_type: WorkflowType
     project_id: str
-    deployment: Optional[str] = None
-    workflow_function: Optional[str] = None
-    configuration: Optional[dict] = None
-    graph: Optional[dict] = None
+
+    branch: str
+    workflow_type: WorkflowType
+    type_kwargs: dict[str, str] = {}
+    structure: dict[str, str] = {}
+    script: str = ""
+    configuration: dict[str, str] = {}
 
 
 class WorkflowEvent:

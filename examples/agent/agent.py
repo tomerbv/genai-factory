@@ -119,5 +119,5 @@ class Agent(ChainRunner):
     def _run(self, event):
         self.agent = self._get_agent()
         response = list(self.agent.stream({"input": event.query}))
-        answer = response[-1]["messages"][-1].content
+        answer = response[-1]["messages"][-1].body
         return {"answer": answer, "sources": ""}

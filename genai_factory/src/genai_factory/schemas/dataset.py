@@ -20,8 +20,10 @@ from genai_factory.schemas.base import BaseWithVerMetadata
 class Dataset(BaseWithVerMetadata):
     _top_level_fields = ["task"]
 
-    task: str
-    path: str
     project_id: str
-    sources: Optional[List[str]] = None
-    producer: Optional[str] = None
+
+    data_sources: Optional[List[str]] = []
+    task: str = ""
+    path: str
+    producer: dict[str, str] = {}
+    profile: dict[str, str] = {}

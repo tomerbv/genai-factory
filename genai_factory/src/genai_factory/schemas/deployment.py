@@ -13,21 +13,27 @@
 # limitations under the License.
 
 from enum import Enum
-from typing import Optional
 
 from genai_factory.schemas.base import BaseWithVerMetadata
 
+class DeploymentType(str, Enum):
+    MODEL = "model"
+    WORKFLOW = "workflow"
+    KNOWLEDGE_BASE = "knowledge-base"
+    AGENT = "agent"
+    MCP_SERVER = "mcp-server"
 
-class Model(BaseWithVerMetadata):
-    _extra_fields = ["source", "producer", "profile"]
-    _top_level_fields = ["is_model", "base_model", "task"]
+class Deployment(BaseWithVerMetadata):
+    _top_level_fields = ["is_remote", "type"]
 
-    project_id: str
+    model_id: str
+    workflow_id: str
 
-    is_model: bool
-    base_model: str
-    task: Optional[str] = None
-    source: Optional[str] = None
-    producer: dict[str, str] = {}
+    is_remote: bool
+    type: DeploymentType
+    type_kwargs: dict[str, str] = {}
+    configuration: dict[str, str] = {}
+    status: dict[str, str] = {}
     profile: dict[str, str] = {}
+
 

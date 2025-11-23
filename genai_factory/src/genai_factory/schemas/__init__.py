@@ -22,9 +22,9 @@ from genai_factory.schemas.base import (
 from genai_factory.schemas.data_source import DataSource, DataSourceType
 from genai_factory.schemas.dataset import Dataset
 from genai_factory.schemas.document import Document
-from genai_factory.schemas.model import Model, ModelType
+from genai_factory.schemas.model import Model
 from genai_factory.schemas.project import Project
 from genai_factory.schemas.prompt_template import PromptTemplate
-from genai_factory.schemas.session import ChatSession, Conversation, QueryItem
+from genai_factory.schemas.session import Session, Conversation, QueryItem
 from genai_factory.schemas.user import User
 from genai_factory.schemas.workflow import Workflow, WorkflowEvent, WorkflowType

@@ -1233,7 +1233,7 @@ class SqlClient(Client):
 
     def create_session(
         self,
-        session: Union[api_models.ChatSession, dict],
+        session: Union[api_models.Session, dict],
         db_session: sqlalchemy.orm.Session = None,
     ):
         """
@@ -1246,7 +1246,7 @@ class SqlClient(Client):
         """
         logger.debug(f"Creating session: {session}")
         if isinstance(session, dict):
-            session = api_models.ChatSession.from_dict(session)
+            session = api_models.Session.from_dict(session)
         return self._create(db_session, db.Session, session)
 
     def get_session(
@@ -1271,7 +1271,7 @@ class SqlClient(Client):
         logger.debug(f"Getting session: name={name}, uid={uid}, user_id={user_id}")
         if uid:
             return self._get(
-                db_session, db.Session, api_models.ChatSession, uid=uid, **kwargs
+                db_session, db.Session, api_models.Session, uid=uid, **kwargs
             )
         elif user_id:
             # get the last session for the user
@@ -1280,14 +1280,14 @@ class SqlClient(Client):
             )[0]
         elif name:
             return self._get(
-                db_session, db.Session, api_models.ChatSession, name=name, **kwargs
+                db_session, db.Session, api_models.Session, name=name, **kwargs
             )
         raise ValueError("session_name or user_id must be provided")
 
     def update_session(
         self,
         name: str,
-        session: Union[api_models.ChatSession, dict],
+        session: Union[api_models.Session, dict],
         db_session: sqlalchemy.orm.Session = None,
     ):
         """
@@ -1359,7 +1359,7 @@ class SqlClient(Client):
         query = query.order_by(db.Session.updated.desc())
         if last > 0:
             query = query.limit(last)
-        return self._process_output(query.all(), api_models.ChatSession, output_mode)
+        return self._process_output(query.all(), api_models.Session, output_mode)
 
     def _process_output(
         self,

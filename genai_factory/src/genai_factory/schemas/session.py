@@ -37,7 +37,7 @@ class ChatRole(str, Enum):
 
 class Message(BaseModel):
     role: ChatRole
-    content: str
+    body: str
     extra_data: Optional[dict] = None
     sources: Optional[List[dict]] = None
     human_feedback: Optional[str] = None
@@ -48,10 +48,10 @@ class Conversation(BaseModel):
     saved_index: int = 0
 
     def __str__(self):
-        return "\n".join([f"{m.role}: {m.content}" for m in self.messages])
+        return "\n".join([f"{m.role}: {m.body}" for m in self.messages])
 
-    def add_message(self, role, content, sources=None):
-        self.messages.append(Message(role=role, content=content, sources=sources))
+    def add_message(self, role, body, sources=None):
+        self.messages.append(Message(role=role, body=body, sources=sources))
 
     def to_list(self):
         return self.model_dump(mode="json")["messages"]
@@ -64,12 +64,15 @@ class Conversation(BaseModel):
         return cls.model_validate({"messages": data or []})
 
 
-class ChatSession(BaseWithOwner):
+class Session(BaseWithOwner):
     _extra_fields = ["history"]
     _top_level_fields = ["workflow_id"]
 
+    user_id: str
     workflow_id: str
+
     history: List[Message] = []
+    extra_data: dict[str, str] = {}
 
     def to_conversation(self):
         return Conversation.from_list(self.history)

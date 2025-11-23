@@ -633,8 +633,8 @@ class Client(ABC):
 
     @abstractmethod
     def create_session(
-        self, session: Union[api_models.ChatSession, dict], **kwargs
-    ) -> api_models.ChatSession:
+        self, session: Union[api_models.Session, dict], **kwargs
+    ) -> api_models.Session:
         """
         Create a new session in the database.
 
@@ -647,7 +647,7 @@ class Client(ABC):
     @abstractmethod
     def get_session(
         self, name: str = None, uid: str = None, user_id: str = None, **kwargs
-    ) -> Optional[api_models.ChatSession]:
+    ) -> Optional[api_models.Session]:
         """
         Get a session from the database.
 
@@ -661,8 +661,8 @@ class Client(ABC):
 
     @abstractmethod
     def update_session(
-        self, name: str, session: Union[api_models.ChatSession, dict], **kwargs
-    ) -> api_models.ChatSession:
+        self, name: str, session: Union[api_models.Session, dict], **kwargs
+    ) -> api_models.Session:
         """
         Update a session in the database.
 

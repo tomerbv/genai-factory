@@ -19,6 +19,8 @@ from genai_factory.schemas.base import BaseWithVerMetadata
 
 class Document(BaseWithVerMetadata):
     _top_level_fields = ["path", "origin"]
-    path: str
+
     project_id: str
+
+    path: str
     origin: Optional[str] = None

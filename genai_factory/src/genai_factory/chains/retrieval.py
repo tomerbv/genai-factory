@@ -144,7 +144,7 @@ class DocumentRetriever:
         # TODO: use text when is_cli
         logger.debug(f"Retriever Question: {event.query}")
         # event.query.content is not always present
-        query = event.query.content if hasattr(event.query, "content") else event.query
+        query = event.query.body if hasattr(event.query, "content") else event.query
         answer, sources = self._get_answer(query)
         logger.debug(f"Answer: {answer}\nSources: {sources}")
         return {"answer": answer, "sources": sources}

@@ -17,7 +17,7 @@ from typing import Union
 import requests
 from mlrun.utils.helpers import dict_to_json
 
-from genai_factory.schemas import ChatSession, DataSource, Project, User, Workflow
+from genai_factory.schemas import Session, DataSource, Project, User, Workflow
 from genai_factory.utils import logger
 
 
@@ -144,7 +144,7 @@ class ControllerClient:
 
     def get_session(
         self, name: str, uid: str = None, username: str = None
-    ) -> ChatSession:
+    ) -> Session:
         """
         Get a user's session
 
@@ -163,7 +163,7 @@ class ControllerClient:
         )
         raw_response = response["data"]
         dict_response = dict(raw_response) if isinstance(raw_response, list) else raw_response
-        return ChatSession(**dict_response)
+        return Session(**dict_response)
 
     def get_user(self, username: str = "", email: str = None, uid: str = None) -> User:
         """
@@ -190,9 +190,9 @@ class ControllerClient:
 
     def update_session(
         self,
-        chat_session: ChatSession,
+        chat_session: Session,
         username: str = None,
-    ) -> ChatSession:
+    ) -> Session:
         """
         Update a session in the database.
 
@@ -209,7 +209,7 @@ class ControllerClient:
         )
         raw_response = response["data"]
         dict_response = dict(raw_response) if isinstance(raw_response, list) else raw_response
-        return ChatSession(**dict_response)
+        return Session(**dict_response)
 
     def get_project(self) -> Project:
         """

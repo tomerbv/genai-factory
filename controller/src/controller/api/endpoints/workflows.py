@@ -27,7 +27,7 @@ from controller.api.utils import (
 from controller.db import client
 from genai_factory.schemas import (
     APIResponse,
-    ChatSession,
+    Session,
     OutputMode,
     QueryItem,
     Workflow,
@@ -250,7 +250,7 @@ def infer_workflow(
         session = client.get_session(name=query.session_name, db_session=db_session)
         if session is None:
             client.create_session(
-                session=ChatSession(
+                session=Session(
                     name=query.session_name,
                     workflow_id=workflow.uid,
                     owner_id=client.get_user(
